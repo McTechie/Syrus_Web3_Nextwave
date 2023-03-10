@@ -7,6 +7,11 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.16",
+    "@thirdweb-dev/auth": "^3.0.7",
+    "@thirdweb-dev/react": "^3.10.3",
+    "@thirdweb-dev/sdk": "^3.10.3",
+    "@thirdweb-dev/storage": "^1.1.0",
+    "ethers": "5",
     "framer-motion": "^10.2.3",
     "next": "latest",
     "react": "18.2.0",
