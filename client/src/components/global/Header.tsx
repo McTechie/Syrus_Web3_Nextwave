@@ -32,8 +32,8 @@ const Header = ({ hideLinks }: HeaderProps) => {
           <Link href='/'><p className='nav-link'>Pricing</p></Link>
 
           <Link href='/login'>
-            <button className='text-white text-sm bg-emerald-600 py-[0.65rem] px-4 mx-2 border-swasthya hover:shadow-sm shadow-emerald-300 hover:bg-indigo-500 hover:shadow-indigo-400 scale-on-hover-sm flex space-x-2 items-center'>
-              <span>Sign In</span>
+            <button className='text-white text-sm bg-emerald-600 py-[0.65rem] px-4 mx-2 rounded-full hover:shadow-sm shadow-emerald-300 hover:bg-indigo-500 hover:shadow-indigo-400 scale-on-hover-sm flex space-x-2 items-center'>
+              <span>Login</span>
               <ArrowRightCircleIcon className='h-5 w-5 ml-2' />
             </button>
           </Link>

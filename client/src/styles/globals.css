@@ -14,17 +14,13 @@
   .scale-on-hover-sm {
     @apply hover:scale-[1.025] animate;
   }
-
-  .border-swasthya {
-    @apply rounded-tr-2xl rounded-bl-2xl;
-  }
   
   .nav-link {
     @apply cursor-pointer hover:-translate-y-[2px] hover:text-indigo-600 animate p-3 text-sm;
   }
 
   .section-btn {
-    @apply text-white text-sm bg-indigo-500 py-3 px-4 mx-2 mt-10 border-swasthya shadow-md hover:-translate-x-1 shadow-indigo-300 hover:shadow-indigo-400 scale-on-hover-sm flex space-x-3;
+    @apply text-white text-sm bg-indigo-500 py-3 px-4 mx-2 mt-10 rounded-full shadow-md hover:-translate-x-1 shadow-indigo-300 hover:shadow-indigo-400 scale-on-hover-sm flex space-x-3;
   }
 
   .disabled-btn {

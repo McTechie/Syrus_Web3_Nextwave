@@ -2,12 +2,18 @@
 import type { NextPage } from 'next'
 
 // named imports
+import { useAddress, useDisconnect, useMetamask, useUser } from '@thirdweb-dev/react'
 import { AuthLayout } from '../layouts'
 
 // default imports
 import Image from 'next/image'
 
 const Login: NextPage = () => {
+  // web3 auth hooks
+  const connectWithMetamask = useMetamask()
+  const disconnect = useDisconnect()
+  const address = useAddress()
+
   return (
     <AuthLayout>
       <div className='flex h-screen flex-col lg:grid lg:grid-cols-10'>
@@ -38,12 +44,21 @@ const Login: NextPage = () => {
               The <span className='font-bold underline decoration-indigo-400/70'>ChainBridge</span> Portal Access
             </h2>
 
-            <button className='rounded-full bg-indigo-500 text-white px-4 py-2 text-xs font-bold lg:px-5 lg:py-3 lg:text-base'>
-              Sign In
+            <button
+              onClick={() => address ? disconnect() : connectWithMetamask()}
+              className='rounded-full bg-indigo-500 text-white px-4 py-2 text-xs font-bold lg:px-5 lg:py-3 lg:text-base'
+            >
+              {address ? 'Sign Out' : 'Sign In'}
             </button>
           </header>
 
           <hr className='my-2 border-[0.5px]' />
+
+          {address && (
+            <p className='text-center text-sm text-emerald-600'>
+              Your logged in with wallet: {address.substring(0, 4)}...{address.substring(address.length - 4)}
+            </p>
+          )}
 
           <div className='flex mt-10 flex-1 flex-col items-center space-y-6 lg:justify-center'>
             <div className='flex'>
@@ -71,7 +86,7 @@ const Login: NextPage = () => {
           </div>
 
           <button className='h-14 bg-emerald-600 w-full text-white rounded-full mt-10 font-bold'>
-            Get Started &#40;Mint NFT&#41;
+            Mint &#40;ERC 1155&#41; NFT
           </button>
 
         </section>
