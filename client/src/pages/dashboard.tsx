@@ -8,7 +8,6 @@ import {
   useAddress,
   useContract,
   useDisconnect,
-  useMetamask,
   useOwnedNFTs,
 } from '@thirdweb-dev/react'
 
@@ -17,7 +16,6 @@ const Dashboard: NextPage = () => {
   const router = useRouter()
 
   // web3 auth hooks
-  const connectWithMetamask = useMetamask()
   const disconnect = useDisconnect()
   const address = useAddress()
 
@@ -26,12 +24,12 @@ const Dashboard: NextPage = () => {
   const { data: ownedNFTs, isLoading } = useOwnedNFTs(contract, address)
   const hasAccess = ownedNFTs?.length! > 0
 
-  if (isLoading) {
-    return <p>Loading...</p>
+  if (!address || (!isLoading && !hasAccess)) {
+    return <p>No Access...</p>
   }
 
-  if (!hasAccess) {
-    router.push('/login')
+  if (isLoading) {
+    return <p>Loading...</p>
   }
 
   return (
