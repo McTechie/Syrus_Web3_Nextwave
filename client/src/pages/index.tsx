@@ -10,7 +10,7 @@ const Home: NextPage = () => {
     <BaseLayout>
       <Section
         title='Bridging The Gap'
-        content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, placeat. Eaque enim amet sunt ipsa eum iusto corrupti blanditiis nesciunt odio excepturi, molestiae assumenda earum deserunt reiciendis dolorem dolorum sint, molestiae assumenda earum!'
+        content='Blockchain maintains the integrity of health records while establishing a single point of truth. Doctors, hospitals and laboratories can all request patient information that has a record of origin and protects the patient s identity from outside sources!'
         imgPath='/home/section1.svg'
         btnText='Get Started'
         link='/login'
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
       <Section
         title='Powered By Blockchain'
-        content='Lorem ipsum dolor sit amet consectetur, adipisicing elit! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex suscipit eveniet architecto reprehenderit, quidem maiores maxime perferendis quae nobis ad! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum tenetur assumenda id totam animi nesciunt, tempore sint dolorem est voluptate.'
+        content='Keeping medical data safe and secure is the most popular blockchain healthcare application at the moment, which isn’t surprising. Security is a major issue in the healthcare industry.'
         imgPath='/home/section2.svg'
         btnText='Know How?'
         link='/about'
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
 
       <Section
         title='Fast & Secure'
-        content='Lorem ipsum dolor sit amet consectetur, adipisicing elit! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex suscipit eveniet architecto reprehenderit, quidem maiores maxime perferendis quae nobis ad! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum tenetur assumenda id totam animi nesciunt, tempore sint dolorem est voluptate.'
+        content='A Blockchain network is used in the healthcare system to preserve and exchange patient data through hospitals, diagnostic laboratories, pharmacy firms, and physicians. Blockchain applications can accurately identify severe mistakes and even dangerous ones in the medical field.'
         imgPath='/home/section3.svg'
         btnText='Learn More'
         link='/about'
