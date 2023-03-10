@@ -10,13 +10,7 @@ import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThirdwebProvider
-      activeChain='mumbai'
-      authConfig={{
-        domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN || '',
-        authUrl: '/api/auth',
-      }}
-    >
+    <ThirdwebProvider activeChain='mumbai'>
       <LazyMotion features={domAnimation}>
         <Component {...pageProps} />
       </LazyMotion>

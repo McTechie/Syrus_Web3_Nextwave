@@ -31,13 +31,17 @@ const Login: NextPage = () => {
   // states for the current NFT chosen to be minted
   const [currentIndex, setCurrentIndex] = useState<number>(0)
 
-  // check if user owns any IRC 1155 NFTs
-  const { contract } = useContract('0x863841449a5bB0011B37B5e94504bFFB909Adcc0')
-  const { data: ownedNFTs, isLoading: userDataLoading } = useOwnedNFTs(contract, address)
+  // check if user owns any ERC 1155 NFTs
+  const { contract: accessContract } = useContract(process.env.NEXT_PUBLIC_NFT_GATING_CONTRACT)
+  const { data: ownedNFTs, isLoading: userDataLoading } = useOwnedNFTs(accessContract, address)
   const hasAccess: boolean = ownedNFTs?.length! > 0
 
   // claim NFT hook
-  const { mutateAsync: claim, isLoading } = useClaimNFT(contract)
+  const { mutateAsync: claim, isLoading, error } = useClaimNFT(accessContract)
+
+  if (error) {
+    return <p>Something went wrong...</p>
+  }
 
   // handler function for claiming NFT
   const handleMintNFT = async () => {

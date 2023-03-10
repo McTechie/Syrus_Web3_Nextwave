@@ -224,7 +224,7 @@ const ListingTable = () => {
             <button
               type='button'
               onClick={() => handlePagination('previous')}
-              className='flex space-x-2 items-center p-2 pr-4 rounded-full text-sm bg-indigo-400 text-white'
+              className='flex space-x-2 items-center p-2 pr-4 rounded-full text-sm bg-indigo-400 hover:bg-indigo-600 animate text-white'
             >
               <ChevronLeftIcon className='w-4 h-4' />
               <span>Previous</span>
@@ -240,7 +240,7 @@ const ListingTable = () => {
               <select
                 name='paginationSize'
                 id='paginationSize'
-                className='text-sm text-white ml-2  bg-indigo-400 rounded-md p-1 py-2'
+                className='text-sm text-white ml-2  bg-indigo-400 hover:bg-indigo-600 animate rounded-md p-1 py-2'
                 value={appointmentsPerPage}
                 onChange={(e) => setAppointmentsPerPage(parseInt(e.target.value))}
               >
@@ -253,7 +253,7 @@ const ListingTable = () => {
             <button
               type='button'
               onClick={() => handlePagination('next')}
-              className='flex space-x-2 items-center p-2 pl-4 rounded-full text-sm bg-indigo-400 text-white'
+              className='flex space-x-2 items-center p-2 pl-4 rounded-full text-sm bg-indigo-400 hover:bg-indigo-600 animate text-white'
             >
               <span>Next</span>
               <ChevronRightIcon className='w-4 h-4' />
