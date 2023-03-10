@@ -16,7 +16,7 @@
   }
   
   .nav-link {
-    @apply cursor-pointer hover:-translate-y-[2px] hover:text-indigo-600 animate p-3 text-sm;
+    @apply cursor-pointer hover:-translate-y-[2px] hover:text-indigo-600 animate p-3 text-sm hidden md:block;
   }
 
   .section-btn {

@@ -17,7 +17,7 @@ interface SectionProps {
 
 const Section = ({ title, content, imgPath, link, btnText, isReversed }: SectionProps) => {
   return (
-    <section className={`px-20 py-44 grid grid-cols-2 ${
+    <section className={`px-10 py-14 md:px-20 md:py-44 grid grid-cols-1 md:grid-cols-2 ${
       isReversed ? 'bg-indigo-100 text-gray-600' : 'bg-white text-emerald-600'
     }`}>
       <m.div
@@ -43,12 +43,12 @@ const Section = ({ title, content, imgPath, link, btnText, isReversed }: Section
           isReversed && '-order-1'
         }`}
       >
-        <h2 className={`text-6xl pb-10 ${
+        <h2 className={`text-3xl md:text-6xl pb-10 ${
           !isReversed ? 'text-right' : 'text-left'
         }`}>
           {title.split(' ')[0]}
           {title.split(' ')[1] && (
-            <span className='text-indigo-400 px-2'>
+            <span className='text-indigo-400 md:px-2'>
               {title.split(' ')[1]}
             </span>
           )}

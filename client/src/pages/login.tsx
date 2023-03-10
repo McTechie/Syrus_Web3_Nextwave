@@ -5,6 +5,7 @@ import type { NextPage } from 'next'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { AuthLayout } from '../layouts'
+import { ArrowUpRightIcon } from '@heroicons/react/20/solid'
 import {
   useAddress,
   useClaimNFT,
@@ -17,7 +18,6 @@ import {
 // default imports
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRightIcon } from '@heroicons/react/20/solid'
 
 const Login: NextPage = () => {
   // next router
@@ -34,7 +34,7 @@ const Login: NextPage = () => {
   // check if user owns any IRC 1155 NFTs
   const { contract } = useContract('0x863841449a5bB0011B37B5e94504bFFB909Adcc0')
   const { data: ownedNFTs, isLoading: userDataLoading } = useOwnedNFTs(contract, address)
-  const hasAccess = ownedNFTs?.length! > 0
+  const hasAccess: boolean = ownedNFTs?.length! > 0
 
   // claim NFT hook
   const { mutateAsync: claim, isLoading } = useClaimNFT(contract)
@@ -84,7 +84,7 @@ const Login: NextPage = () => {
               {hasAccess ? (
                 <Link
                   href='/dashboard'
-                  className='rounded-full bg-emerald-600 hover:bg-emerald-700 animate text-white px-4 py-2 text-xs font-bold lg:px-5 lg:py-3 lg:text-sm flex items-center space-x-1'
+                  className='rounded-full bg-emerald-600 hover:bg-emerald-700 animate text-white px-4 py-3 text-xs font-bold lg:px-5 lg:text-sm flex items-center space-x-1'
                 >
                   <p>Dashboard</p>
                   <ArrowUpRightIcon className='h-4 w-4 ml-1' />
@@ -115,7 +115,7 @@ const Login: NextPage = () => {
 
           {/* nft details */}
           <div className='flex mt-8 flex-1 flex-col items-center space-y-6 lg:justify-center'>
-            <div className='flex items-center space-x-6'>
+            <div className='flex flex-col space-y-8 md:flex-row md:space-y-0 items-center space-x-6'>
               <div className='flex flex-col'>
                 <label htmlFor='tokenIndex' className='text-sm mb-1'>
                   Select Your Role
@@ -139,7 +139,7 @@ const Login: NextPage = () => {
               />
             </div>
 
-            <h3 className='text-3xl font-semibold lg:text-4xl lg:font-bold text-gray-600'>
+            <h3 className='text-center text-3xl font-semibold lg:text-4xl lg:font-bold text-gray-600'>
               ChainBridge Special NFT
             </h3>
 
