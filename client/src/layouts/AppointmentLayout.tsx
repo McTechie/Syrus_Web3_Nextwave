@@ -1,15 +1,15 @@
 // default imports
 import Head from 'next/head'
 
-interface DashboardLayoutProps {
+interface AppointmentLayoutProps {
   children: React.ReactNode
 }
 
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+const AppointmentLayout = ({ children }: AppointmentLayoutProps) => {
   return (
     <div>
       <Head>
-        <title>ChainBridge Portal | View Medical Records and Other Information!</title>
+        <title>ChainBridge Portal | Appointment Details</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
@@ -20,4 +20,4 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   )
 }
 
-export default DashboardLayout
+export default AppointmentLayout

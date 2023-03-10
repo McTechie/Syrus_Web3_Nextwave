@@ -4,3 +4,7 @@ export { default as Footer } from './global/Footer'
 
 // landing page components
 export { default as Section } from './landing/Section'
+
+// dashboard page components
+export { default as ProfileInfo } from './dashboard/ProfileInfo'
+export { default as ListingTable } from './dashboard/ListingTable'

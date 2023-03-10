@@ -3,8 +3,8 @@ import type { NextPage } from 'next'
 
 // named imports
 import { useRouter } from 'next/router'
-import { DashboardLayout } from '../layouts'
-import { ProfileInfo, ListingTable } from '../components'
+import { AppointmentLayout } from '../../layouts'
+import { ProfileInfo } from '../../components'
 import {
   useAddress,
   useContract,
@@ -12,7 +12,7 @@ import {
   useOwnedNFTs,
 } from '@thirdweb-dev/react'
 
-const Dashboard: NextPage = () => {
+const Appointment: NextPage = () => {
   // next router
   const router = useRouter()
 
@@ -34,14 +34,14 @@ const Dashboard: NextPage = () => {
   // }
 
   return (
-    <DashboardLayout>
+    <AppointmentLayout>
       <ProfileInfo />
       
       <main className='max-w-screen-2xl mx-auto p-4'>
-        <ListingTable />
+        <p>Appointment</p>
       </main>
-    </DashboardLayout>
+    </AppointmentLayout>
   )
 }
 
-export default Dashboard
+export default Appointment

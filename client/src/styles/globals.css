@@ -42,4 +42,20 @@
   .form-input {
     @apply px-4 py-3 border-4 rounded-lg border-indigo-300 focus:outline-none
   }
+
+  .table-header-row {
+    @apply bg-indigo-100;
+  }
+
+  .table-header-row th {
+    @apply font-semibold py-3 border-x-4 border-white;
+  }
+
+  .table-body-row {
+    @apply bg-white text-gray-500 even:bg-gray-200 hover:text-white hover:bg-orange-300 cursor-pointer animate;
+  }
+
+  .table-body-row td {
+    @apply py-4 text-sm;
+  }
 }

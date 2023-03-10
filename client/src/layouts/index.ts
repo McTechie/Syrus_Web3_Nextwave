@@ -6,3 +6,6 @@ export { default as AuthLayout } from './AuthLayout'
 
 // dashboard page layout
 export { default as DashboardLayout } from './DashboardLayout'
+
+// appointments page layout
+export { default as AppointmentLayout } from './AppointmentLayout'
