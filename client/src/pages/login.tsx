@@ -33,7 +33,7 @@ const Login: NextPage = () => {
 
   // check if user owns any IRC 1155 NFTs
   const { contract } = useContract('0x863841449a5bB0011B37B5e94504bFFB909Adcc0')
-  const { data: ownedNFTs } = useOwnedNFTs(contract, address)
+  const { data: ownedNFTs, isLoading: userDataLoading } = useOwnedNFTs(contract, address)
   const hasAccess = ownedNFTs?.length! > 0
 
   // claim NFT hook
@@ -149,7 +149,7 @@ const Login: NextPage = () => {
           </div>
 
           {/* loader section */}
-          {address && isLoading && (
+          {address && (isLoading || userDataLoading) && (
             <div className='flex items-center justify-center'>
               <Image
                 src='https://cdn.hackernoon.com/images/0*4Gzjgh9Y7Gu8KEtZ.gif'
@@ -162,7 +162,7 @@ const Login: NextPage = () => {
 
           {/* mint button */}
           <button
-            disabled={!address || isLoading || hasAccess}
+            disabled={!address || userDataLoading || hasAccess}
             onClick={() => handleMintNFT()}
             className='h-14 bg-emerald-600 hover:bg-emerald-700 animate w-full text-white rounded-full mt-10 font-bold disabled:bg-gray-400 disabled:cursor-not-allowed'
           >
