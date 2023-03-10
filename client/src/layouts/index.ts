@@ -5,4 +5,4 @@ export { default as BaseLayout } from './BaseLayout'
 export { default as AuthLayout } from './AuthLayout'
 
 // dashboard page layout
-// export { default as DashboardLayout } from './DashboardLayout'
+export { default as DashboardLayout } from './DashboardLayout'
