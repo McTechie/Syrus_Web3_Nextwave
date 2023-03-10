@@ -1,6 +1,6 @@
 // named imports
 import { useRouter } from 'next/router'
-import { useAddress, useDisconnect } from '@thirdweb-dev/react'
+import { useAddress, useContract, useDisconnect, useOwnedNFTs } from '@thirdweb-dev/react'
 
 // default imports
 import Image from 'next/image'
@@ -12,13 +12,17 @@ const ProfileInfo = () => {
   // web3 hooks
   const address = useAddress()
   const disconnect = useDisconnect()
-
-  const role = 'Patient'
+  const { contract } = useContract('0x863841449a5bB0011B37B5e94504bFFB909Adcc0')
+  const { data: ownedNFTs, isLoading } = useOwnedNFTs(contract, address)
 
   const handleLogout = () => {
     disconnect()
 
     router.push('/login')
+  }
+
+  if (isLoading) {
+    return <p>Loading...</p>
   }
 
   return (
@@ -33,7 +37,7 @@ const ProfileInfo = () => {
 
         <div className='space-y-3 flex-1'>
           <h1 className='text-4xl font-semibold'>Profile Details</h1>
-          <h2 className='text-xl'>Account Type: <span className='font-semibold'>{role}</span></h2>
+          <h2 className='text-xl'>Account Type: <span className='font-semibold'>{ownedNFTs && ownedNFTs[0].metadata.name}</span></h2>
           <h3 className='text-lg flex-wrap text-indigo-400 break-all'>{address}</h3>
         </div>
 
