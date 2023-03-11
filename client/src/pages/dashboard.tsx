@@ -13,6 +13,7 @@ import {
 
 // default imports
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Dashboard: NextPage = () => {
   // web3 auth hooks

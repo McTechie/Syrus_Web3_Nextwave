@@ -4,6 +4,7 @@ import { useAddress, useContract, useDisconnect, useOwnedNFTs } from '@thirdweb-
 
 // default imports
 import Image from 'next/image'
+import Link from 'next/link'
 
 const ProfileInfo = () => {
   // next router
@@ -41,12 +42,19 @@ const ProfileInfo = () => {
           <h3 className='text-lg flex-wrap text-indigo-400 break-all'>{address}</h3>
         </div>
 
-        <button
-          onClick={() => handleLogout()}
-          className='absolute top-0 right-0 rounded-full bg-indigo-500 hover:bg-indigo-600 animate text-white px-4 py-2 text-xs font-bold lg:px-5 lg:py-3 lg:text-sm'
-        >
-          Logout
-        </button>
+        <div className='absolute top-0 right-0 flex space-x-4'>
+          <Link href='/chatbot'>
+            <button className='text-white text-sm bg-emerald-600 py-[0.65rem] px-4 mx-2 rounded-full hover:shadow-sm shadow-emerald-300 hover:bg-indigo-500 hover:shadow-indigo-400 scale-on-hover-sm flex space-x-2 items-center'>
+              <span>Know More</span>
+            </button>
+          </Link>
+          <button
+            onClick={() => handleLogout()}
+            className='rounded-full bg-indigo-500 hover:bg-indigo-600 animate text-white px-4 py-2 text-xs font-bold lg:px-5 lg:py-3 lg:text-sm'
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </header>
   )
