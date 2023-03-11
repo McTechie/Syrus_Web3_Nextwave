@@ -1,7 +1,6 @@
 // named imports
-import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { ArrowDownCircleIcon, ArrowUpCircleIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
+import { ethers } from 'ethers'
 
 interface ListingTableProps {
   appointments: Appointment[]
@@ -91,6 +90,34 @@ const ListingTable = ({ appointments, userDataLoading }: ListingTableProps) => {
 
   // pagination handler function
 
+  const handlePayment = async (e: React.MouseEvent<HTMLButtonElement>, sender: string, receiver: string, amount: number) => {
+    e.stopPropagation()
+
+    const MATIC_TO_MUBAI = amount / 83.05
+    const FINAL_AMT = 1000000000000000000 * MATIC_TO_MUBAI
+    
+    console.log(sender, receiver, FINAL_AMT)
+
+    const params = [
+      {
+        from: sender,
+        to: receiver,
+        value: Number(FINAL_AMT).toString(16)
+      }
+    ]
+    
+    try {
+      const result = await window.ethereum?.request({
+        method: 'eth_sendTransaction',
+        params
+      })
+
+      console.log(result)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <table className='w-full table-fixed text-center mt-4'>
       <thead>
@@ -107,15 +134,19 @@ const ListingTable = ({ appointments, userDataLoading }: ListingTableProps) => {
           <th>
             Date
           </th>
-          <th>
+          <th className='hidden lg:block'>
             Time
+          </th>
+          <th>
+            {' '}
           </th>
         </tr>
       </thead>
       <tbody>
-        {appointments?.map(appointment => (
+        {/* in case of appointments data available */}
+        {appointments?.map((appointment, index) => (
           <tr
-            key={appointment.patientId}
+            key={appointment.patientId + '_' + index}
             className='table-body-row'
             onClick={() => router.push(`/appointments/${appointment.patientId}`)}
           >
@@ -131,12 +162,21 @@ const ListingTable = ({ appointments, userDataLoading }: ListingTableProps) => {
             <td>
               {appointment.date}
             </td>
-            <td>
+            <td className='hidden lg:block'>
               {appointment.time}
+            </td>
+            <td>
+              <button
+                onClick={(e) => handlePayment(e, appointment.patientId, appointment.providerId, appointment.consultationFee)}
+                className='text-white text-sm bg-emerald-600 py-[0.65rem] px-4 mx-2 rounded-full hover:shadow-sm shadow-emerald-300 hover:bg-emerald-700 cursor-pointer'
+              >
+                Pay Now
+              </button>
             </td>
           </tr>
         ))}
 
+        {/* in case of no data */}
         {appointments?.length === 0 && (
           <tr>
             <td colSpan={5}>
