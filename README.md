@@ -10,11 +10,11 @@
 | :---: | :---: | :---: | :---: |
 | Framework | Next.js (React) | ERC 1155 (Thirdweb) | IPFS (Thirdweb) |
 | Language | TypeScript | TypeScript | TypeScript |
-| State Management | Redux |  |  |
 | Styling | Tailwind CSS |  |  |
-| Form Validation | React Hook Form |  |  |
 | Linting | ESLint |  |  |
-| Hosting | Vercel |  |  |
+| Hosting | Replit | | 
+| Web3 Provider | Thirdweb |
+| Storage | IPFS via Thirdweb |
 
 ---
 
@@ -22,7 +22,10 @@
 
 - [ ] Authentication using User's Wallet
 - [ ] ERC 1155 Tokens created for allowing selective access to the system
+- [ ] Payments between Patient and Doctor via Web 3 wallets
+- [ ] NFT Gating feature for login of Patient and Doctor
 - [ ] Patient Records stored in IPFS via Thirdweb
+- [ ] Deployed on Repl.it
 
 ---
 
