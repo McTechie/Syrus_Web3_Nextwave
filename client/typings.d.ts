@@ -7,7 +7,7 @@ type AppointmentListItem = {
   time: string;
 }
 
-type AppointmentFormValues = {
+type Appointment = {
   providerId: string;
   patientId: string;
   doctor: string;

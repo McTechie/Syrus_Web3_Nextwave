@@ -5,7 +5,6 @@ import type { NextPage } from 'next'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { DashboardLayout } from '../layouts'
 import {
   useAddress,
   useContract,
@@ -15,11 +14,9 @@ import {
 // default imports
 import Image from 'next/image'
 
-const Create: NextPage = () => {
-  const router = useRouter()
-
+const CreateAppointment: NextPage = () => {
   // react hook form
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm<AppointmentFormValues>()
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm<Appointment>()
 
   // web3 hooks
   const address = useAddress()
@@ -34,7 +31,7 @@ const Create: NextPage = () => {
     }
   }, [address])
 
-  const handleMintNFT: SubmitHandler<AppointmentFormValues> = async (data) => {
+  const handleMintNFT: SubmitHandler<Appointment> = async (data) => {
     if (address) {
       console.log('data', data)
 
@@ -50,8 +47,6 @@ const Create: NextPage = () => {
         })
 
         console.log('tx', tx)
-
-        router.push('/dashboard')
       } catch (error) {
         console.log('error', error)
       }
@@ -59,7 +54,7 @@ const Create: NextPage = () => {
   }
 
   return (
-    <DashboardLayout>
+    <section className='my-6'>
       <h3 className={`text-center text-2xl mt-4 ${(address || !isMinting) ? 'mb-8' : 'mb-0'}`}>
         Create an Appointment
       </h3>
@@ -89,7 +84,7 @@ const Create: NextPage = () => {
             disabled={true}
             placeholder='Healthcare Provider ID'
             {...register('providerId', { required: true })}
-            className='w-full border border-gray-300 rounded px-4 py-2 focus:outline-none disabled:opacity-50 disabled:bg-gray-400'
+            className='w-full border-2 border-gray-200 rounded px-4 py-2 focus:outline-none disabled:opacity-50 disabled:bg-gray-400'
           />
         </div>
         
@@ -102,7 +97,7 @@ const Create: NextPage = () => {
             id='patientId'
             placeholder='Patient ID'
             {...register('patientId', { required: true })}
-            className='w-full border border-gray-300 rounded px-4 py-2 focus:outline-none'
+            className='w-full border-2 border-gray-200 rounded px-4 py-2 focus:outline-none'
           />
         </div>
 
@@ -115,7 +110,7 @@ const Create: NextPage = () => {
             id='doctor'
             placeholder='Doctor Name'
             {...register('doctor', { required: true })}
-            className='w-full border border-gray-300 rounded px-4 py-2 focus:outline-none'
+            className='w-full border-2 border-gray-200 rounded px-4 py-2 focus:outline-none'
           />
 
           {errors.doctor && (
@@ -134,7 +129,7 @@ const Create: NextPage = () => {
             id='ailment'
             placeholder='Ailment'
             {...register('ailment', { required: true })}
-            className='w-full border border-gray-300 rounded px-4 py-2 focus:outline-none'
+            className='w-full border-2 border-gray-200 rounded px-4 py-2 focus:outline-none'
           />
 
           {errors.ailment && (
@@ -153,7 +148,7 @@ const Create: NextPage = () => {
             id='date'
             placeholder='Date'
             {...register('date', { required: true })}
-            className='w-full border border-gray-300 rounded px-4 py-2 focus:outline-none'
+            className='w-full border-2 border-gray-200 rounded px-4 py-2 focus:outline-none'
           />
 
           {errors.date && (
@@ -172,7 +167,7 @@ const Create: NextPage = () => {
             id='time'
             placeholder='Time'
             {...register('time', { required: true })}
-            className='w-full border border-gray-300 rounded px-4 py-2 focus:outline-none'
+            className='w-full border-2 border-gray-200 rounded px-4 py-2 focus:outline-none'
           />
 
           {errors.time && (
@@ -191,7 +186,7 @@ const Create: NextPage = () => {
             id='consultationFee'
             placeholder='Consultation Fee (in Rupees)'
             {...register('consultationFee', { valueAsNumber: true, required: true })}
-            className='w-full border border-gray-300 rounded px-4 py-2 focus:outline-none'
+            className='w-full border-2 border-gray-200 rounded px-4 py-2 focus:outline-none'
           />
 
           {errors.consultationFee && (
@@ -210,7 +205,7 @@ const Create: NextPage = () => {
             id='report'
             placeholder='Attach a Report'
             {...register('report')}
-            className='w-full border border-gray-300 rounded px-4 py-2 focus:outline-none'
+            className='w-full border-2 border-gray-200 rounded px-4 py-2 focus:outline-none'
           />
 
           {errors.report && (
@@ -227,8 +222,8 @@ const Create: NextPage = () => {
           Create Appointment
         </button>
       </form>
-    </DashboardLayout>
+    </section>
   )
 }
 
-export default Create
+export default CreateAppointment

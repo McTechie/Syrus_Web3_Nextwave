@@ -13,19 +13,12 @@ const Appointment: NextPage = () => {
   // web3 auth hooks
   const address = useAddress()
 
-  // check if user owns any ERC 1155 NFTs
-  // const { contract: accessContract } = useContract('0x863841449a5bB0011B37B5e94504bFFB909Adcc0')
-  // const { data: ownedNFTs, isLoading } = useOwnedNFTs(accessContract, address)
+  // // check if user owns any ERC 1155 NFTs
+  // const { contract } = useContract(process.env.NEXT_PUBLIC_COLLECTION_CONTRACT)
+  // const { data: ownedNFTs, isLoading } = useOwnedNFTs(contract, address)
 
-  // const hasAccess = ownedNFTs?.length! > 0
-
-  // if (!address || (!isLoading && !hasAccess)) {
-  //   return <p>No Access...</p>
-  // }
-
-  // if (isLoading) {
-  //   return <p>Loading...</p>
-  // }
+  // console.log('isLoading', isLoading)
+  // console.log('ownedNFTs', ownedNFTs)
 
   return (
     <DashboardLayout>
