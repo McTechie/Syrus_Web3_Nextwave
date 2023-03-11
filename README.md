@@ -13,7 +13,7 @@
 | Styling | Tailwind CSS |  |  |
 | Linting | ESLint |  |  |
 | Hosting | Replit |  |  |
-| Web3 Provider | Thirdweb |
+| Web3 Provider | Thirdweb |  |  |
 | Chain | Polygon |  |  |
 
 ---
@@ -26,6 +26,15 @@
 - [x] Payments between Patient and Doctor via MetaMask wallets
 - [x] Patient Records stored as metadata in IPFS using ERC 721 Contracts
 - [x] Deployed on Repl.it
+
+---
+
+### Integrations
+
+- [x] ERC 1155 Contract (Thirdweb)
+- [x] ERC 721 Contract (Thirdweb)
+- [x] Open AI GPT-3 API
+- [x] Dicebear API (for randomly generated avatars based on slug)
 
 ---
 
