@@ -109,12 +109,15 @@ const ListingTable = ({ appointments, userDataLoading }: ListingTableProps) => {
     ]
 
     try {
-      const result = await window.ethereum?.request({
-        method: 'eth_sendTransaction',
-        params
-      })
+      // const result = await window.ethereum?.request({
+      //  method: 'eth_sendTransaction',
+      //  params
+      // })
 
-      console.log(result)
+      // console.log(result)
+      
+      alert('The Payments Functionality is temporarily down')
+      return
     } catch (error) {
       console.log(error)
     }
