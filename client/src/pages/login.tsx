@@ -2,7 +2,7 @@
 import type { NextPage } from 'next'
 
 // named imports
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { AuthLayout } from '../layouts'
 import { ArrowUpRightIcon } from '@heroicons/react/20/solid'
@@ -31,18 +31,34 @@ const Login: NextPage = () => {
   // states for the current NFT chosen to be minted
   const [currentIndex, setCurrentIndex] = useState<number>(0)
 
-  // check if user owns any IRC 1155 NFTs
-  const { contract } = useContract('0x863841449a5bB0011B37B5e94504bFFB909Adcc0')
-  const { data: ownedNFTs, isLoading: userDataLoading } = useOwnedNFTs(contract, address)
-  const hasAccess: boolean = ownedNFTs?.length! > 0
+  // check if user owns any ERC 1155 NFTs
+  const { contract: accessContract } = useContract(process.env.NEXT_PUBLIC_NFT_GATING_CONTRACT)
+  const { data: ownedNFTs, isLoading: userDataLoading } = useOwnedNFTs(accessContract, address)
+  const hasChainBridgeNft: boolean = ownedNFTs?.length! > 0
 
   // claim NFT hook
-  const { mutateAsync: claim, isLoading } = useClaimNFT(contract)
+  const { mutateAsync: claim, isLoading, error } = useClaimNFT(accessContract)
+
+  if (error) {
+    return <p>Something went wrong...</p>
+  }
+
+  useEffect(() => {
+    if (address) {
+      localStorage.setItem('chainbridge_user', address)
+    }
+
+    if (hasChainBridgeNft) {
+      localStorage.setItem('chainbridge_has_access', 'true')
+    }
+  }, [address, hasChainBridgeNft])
 
   // handler function for claiming NFT
   const handleMintNFT = async () => {
     try {
       await claim({ to: address, tokenId: currentIndex, quantity: 1 })
+
+      localStorage.setItem('chainbridge_has_access', 'true')
 
       router.push('/dashboard')
     } catch (error) {
@@ -81,7 +97,7 @@ const Login: NextPage = () => {
             </h2>
 
             <div className='space-x-2'>
-              {hasAccess ? (
+              {hasChainBridgeNft ? (
                 <Link
                   href='/dashboard'
                   className='rounded-full bg-emerald-600 hover:bg-emerald-700 animate text-white px-4 py-3 text-xs font-bold lg:px-5 lg:text-sm flex items-center space-x-1'
@@ -92,7 +108,7 @@ const Login: NextPage = () => {
               ) : (
                 <button
                   onClick={() => address ? disconnect() : connectWithMetamask()}
-                  className='rounded-full bg-indigo-500 hover:bg-indigo-600 animate text-white px-4 py-2 text-xs font-bold lg:px-5 lg:py-3 lg:text-sm'
+                  className='rounded-full bg-indigo-500 hover:bg-indigo-600 animate text-white px-4 py-2 text-xs font-bold lg:px-5 lg:py-3 lg:text-sm mb-2'
                 >
                   {address ? 'Sign Out' : 'Sign In'}
                 </button>
@@ -162,12 +178,12 @@ const Login: NextPage = () => {
 
           {/* mint button */}
           <button
-            disabled={!address || userDataLoading || hasAccess}
+            disabled={!address || userDataLoading || hasChainBridgeNft}
             onClick={() => handleMintNFT()}
             className='h-14 bg-emerald-600 hover:bg-emerald-700 animate w-full text-white rounded-full mt-10 font-bold disabled:bg-gray-400 disabled:cursor-not-allowed'
           >
             {
-              hasAccess ? <span>You have already minted</span> :
+              hasChainBridgeNft ? <span>You have already minted</span> :
               <span>Claim &#40;ERC 1155&#41; NFT</span>
             }
           </button>

@@ -2,44 +2,67 @@
 import type { NextPage } from 'next'
 
 // named imports
-import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { DashboardLayout } from '../layouts'
-import { ProfileInfo, ListingTable } from '../components'
+import { ListingTable, CreateAppointment } from '../components'
 import {
   useAddress,
   useContract,
-  useDisconnect,
   useOwnedNFTs,
 } from '@thirdweb-dev/react'
 
-const Dashboard: NextPage = () => {
-  // next router
-  const router = useRouter()
+// default imports
+import Image from 'next/image'
 
+const Dashboard: NextPage = () => {
   // web3 auth hooks
-  const disconnect = useDisconnect()
   const address = useAddress()
 
-  // check if user owns any IRC 1155 NFTs
-  const { contract } = useContract('0x863841449a5bB0011B37B5e94504bFFB909Adcc0')
-  const { data: ownedNFTs, isLoading } = useOwnedNFTs(contract, address)
-  const hasAccess = ownedNFTs?.length! > 0
+  // check if user owns any ERC 1155 NFTs
+  const [appointments, setAppointments] = useState<Appointment[]>([])
 
-  if (!address || (!isLoading && !hasAccess)) {
+  // fetch user access NFTs
+  const { contract: accessContract } = useContract(process.env.NEXT_PUBLIC_NFT_GATING_CONTRACT)
+  const { data: accessNFTs, isLoading: accessDataLoading } = useOwnedNFTs(accessContract, address)
+
+  // fetch user appointment NFTs
+  const { contract } = useContract(process.env.NEXT_PUBLIC_COLLECTION_CONTRACT)
+  const { data: ownedNFTs, isLoading: userDataLoading } = useOwnedNFTs(contract, address)
+
+  useEffect(() => {
+    if (userDataLoading) return
+
+    const data: any = ownedNFTs?.map(nft => ({
+      ...nft.metadata.properties
+    }))
+
+    setAppointments(data)
+  }, [ownedNFTs, userDataLoading])
+
+  if (!address || !accessNFTs) {
     return <p>No Access...</p>
   }
 
-  if (isLoading) {
-    return <p>Loading...</p>
+  if (accessDataLoading || userDataLoading) {
+    return (
+      <div className='flex items-center justify-center'>
+        <Image
+          src='https://cdn.hackernoon.com/images/0*4Gzjgh9Y7Gu8KEtZ.gif'
+          alt='Loading...'
+          width={200}
+          height={200}
+        />
+      </div>
+    )
   }
 
   return (
     <DashboardLayout>
-      <ProfileInfo />
-      
-      <main className='max-w-screen-2xl mx-auto p-4'>
-        <ListingTable />
-      </main>
+      {accessNFTs && accessNFTs[0]?.metadata.name === 'CB Patient' ? (
+        <ListingTable appointments={appointments} userDataLoading={userDataLoading} />
+      ) : (
+        <CreateAppointment />
+      )}
     </DashboardLayout>
   )
 }

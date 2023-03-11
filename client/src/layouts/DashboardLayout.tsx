@@ -1,3 +1,6 @@
+// named imports
+import { ProfileInfo } from '../components'
+
 // default imports
 import Head from 'next/head'
 
@@ -13,9 +16,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <div>
+      <ProfileInfo />
+
+      <main className='max-w-screen-2xl mx-auto p-4'>
         {children}
-      </div>
+      </main>
     </div>
   )
 }
