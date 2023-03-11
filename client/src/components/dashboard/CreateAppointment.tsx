@@ -29,7 +29,7 @@ const CreateAppointment: NextPage = () => {
     if (address) {
       setValue('providerId', address)
     }
-  }, [address])
+  }, [address, setValue])
 
   const handleMintNFT: SubmitHandler<Appointment> = async (data) => {
     if (address) {
@@ -115,7 +115,7 @@ const CreateAppointment: NextPage = () => {
 
           {errors.doctor && (
             <p className='text-red-500 text-sm'>
-              Please enter the doctor's name.
+              Please enter the doctor&apos;s name.
             </p>
           )}
         </div>

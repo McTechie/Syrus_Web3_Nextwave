@@ -2,7 +2,7 @@
 import type { NextPage } from 'next'
 
 // named imports
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { AuthLayout } from '../layouts'
 import { ArrowUpRightIcon } from '@heroicons/react/20/solid'
@@ -42,16 +42,6 @@ const Login: NextPage = () => {
   if (error) {
     return <p>Something went wrong...</p>
   }
-
-  useEffect(() => {
-    if (address) {
-      localStorage.setItem('chainbridge_user', address)
-    }
-
-    if (hasChainBridgeNft) {
-      localStorage.setItem('chainbridge_has_access', 'true')
-    }
-  }, [address, hasChainBridgeNft])
 
   // handler function for claiming NFT
   const handleMintNFT = async () => {
