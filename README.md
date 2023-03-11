@@ -8,24 +8,24 @@
 
 | Usage | Frontend | Authentication | Storage |
 | :---: | :---: | :---: | :---: |
-| Framework | Next.js (React) | ERC 1155 (Thirdweb) | IPFS (Thirdweb) |
+| Framework | Next.js (React) | ERC 1155 Contracts (Thirdweb) | ERC 721 Contracts (Thirdweb) |
 | Language | TypeScript | TypeScript | TypeScript |
 | Styling | Tailwind CSS |  |  |
 | Linting | ESLint |  |  |
-| Hosting | Replit | | 
+| Hosting | Replit |  |  |
 | Web3 Provider | Thirdweb |
-| Storage | IPFS via Thirdweb |
+| Chain | Polygon |  |  |
 
 ---
 
 ### Key Features
 
-- [ ] Authentication using User's Wallet
-- [ ] ERC 1155 Tokens created for allowing selective access to the system
-- [ ] Payments between Patient and Doctor via Web 3 wallets
-- [ ] NFT Gating feature for login of Patient and Doctor
-- [ ] Patient Records stored in IPFS via Thirdweb
-- [ ] Deployed on Repl.it
+- [x] Authentication using User's MetaMask Wallet
+- [x] ERC 1155 Tokens utilised for NFT Gating (selective access to authorised users)
+- [x] Patient and Admin roles for users in the system
+- [x] Payments between Patient and Doctor via MetaMask wallets
+- [x] Patient Records stored as metadata in IPFS using ERC 721 Contracts
+- [x] Deployed on Repl.it
 
 ---
 
